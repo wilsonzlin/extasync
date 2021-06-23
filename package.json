@@ -1,0 +1,31 @@
+{
+  "name": "extasync",
+  "version": "0.0.1",
+  "files": [
+    "js/**",
+    "ts/**"
+  ],
+  "repository": "https://github.com/wilsonzlin/extasync",
+  "author": "Wilson Lin <npm@wilsonl.in>",
+  "license": "ISC",
+  "scripts": {
+    "build": "npm run clean && tsc && rm -f js/*.test.js js/*.test.d.ts",
+    "clean": "rm -rf js",
+    "format": "prettier --write 'ts/**/*.ts'",
+    "prepublishOnly": "prettier --check 'ts/**/*.ts' && npm run build && npm run test",
+    "test": "jest"
+  },
+  "dependencies": {
+    "extlib": "^0.15.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/types": "^7.14.5",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.4",
+    "jest": "^27.0.5",
+    "prettier": "^2.3.1",
+    "ts-jest": "^27.0.3",
+    "typescript": "^4.3.4"
+  }
+}
