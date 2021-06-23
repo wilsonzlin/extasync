@@ -1,5 +1,10 @@
 {
-  "include": ["ts/**/*.ts"],
+  "include": [
+    "ts/**/*.ts"
+  ],
+  "exclude": [
+    "ts/**/*.test.ts"
+  ],
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
@@ -7,7 +12,9 @@
     "declaration": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext"
+    ],
     "module": "CommonJS",
     "noErrorTruncation": true,
     "noFallthroughCasesInSwitch": true,

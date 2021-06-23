@@ -9,7 +9,7 @@
   "author": "Wilson Lin <npm@wilsonl.in>",
   "license": "ISC",
   "scripts": {
-    "build": "npm run clean && tsc && rm -f js/*.test.js js/*.test.d.ts",
+    "build": "npm run clean && tsc",
     "clean": "rm -rf js",
     "format": "prettier --write 'ts/**/*.ts'",
     "prepublishOnly": "prettier --check 'ts/**/*.ts' && npm run build && npm run test",
