@@ -69,4 +69,4 @@ const lazyAwaitBabelPlugin: PluginObj = {
   },
 };
 
-export default lazyAwaitBabelPlugin;
+export default () => lazyAwaitBabelPlugin;

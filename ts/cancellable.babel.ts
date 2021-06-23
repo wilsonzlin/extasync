@@ -76,4 +76,4 @@ const cancellableBabelPlugin: PluginObj = {
   },
 };
 
-export default cancellableBabelPlugin;
+export default () => cancellableBabelPlugin;
