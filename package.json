@@ -2,8 +2,7 @@
   "name": "@xtjs/lang",
   "version": "0.0.2",
   "files": [
-    "js/**",
-    "ts/**"
+    "js/**"
   ],
   "repository": "https://github.com/wilsonzlin/xtjs-lang",
   "author": "Wilson Lin <npm@wilsonl.in>",
