@@ -52,14 +52,10 @@ export const cancellable = <T>(
 
       const yielded = next.value as any;
       subtasks.push(yielded);
-      if (isAbortController(yielded)) {
-        lastResolved = undefined;
-      } else {
-        try {
-          lastResolved = [false, await yielded];
-        } catch (e) {
-          lastResolved = [true, e];
-        }
+      try {
+        lastResolved = [false, await yielded];
+      } catch (e) {
+        lastResolved = [true, e];
       }
     }
   })();
