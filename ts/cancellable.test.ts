@@ -28,12 +28,15 @@ test("yields result in resolved values", async () => {
   expect(await p).toStrictEqual(2);
 });
 
-test("yielded AbortController objects are aborted if cancelled", function* () {
+test("yielded AbortController objects are aborted if cancelled", async () => {
   const abortController = new AbortController();
-  const p = cancellable(function* () {
+  const cncl = cancellable(function* () {
     yield abortController;
     yield asyncTimeout(10000);
   });
-  p.cancel();
+  // If we don't catch, test will fail when errors are thrown on cancellation.
+  const p = cncl.catch(() => void 0);
+  cncl.cancel();
+  await p;
   expect(abortController.signal.aborted).toStrictEqual(true);
 });
