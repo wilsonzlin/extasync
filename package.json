@@ -15,7 +15,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "extlib": "^0.15.5"
+    "@xtjs/lib": "^0.27.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

@@ -1,4 +1,4 @@
-import isPlainObject from "extlib/js/isPlainObject";
+import isPlainObject from "@xtjs/lib/js/isPlainObject";
 
 export const IS_CANCELLABLE = Symbol();
 
