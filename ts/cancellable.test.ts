@@ -1,4 +1,4 @@
-import asyncTimeout from "extlib/js/asyncTimeout";
+import asyncTimeout from "@xtjs/lib/js/asyncTimeout";
 import { cancellable, CancelledError } from "./cancellable";
 
 test("it cancels execution midway", async () => {
