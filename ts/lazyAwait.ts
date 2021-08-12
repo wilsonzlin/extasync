@@ -1,5 +1,5 @@
 // Execute an async function, suspending execution on await only on Promise
-// values (and not all, which is the spec behaviour).
+// values (and not always, which is the spec behaviour).
 // Why do we need a generator runtime instead of a simple Babel transform of
 // await expressions?
 // Because although a Babel transform can handle await expressions, it doesn't

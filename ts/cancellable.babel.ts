@@ -18,9 +18,10 @@ const cancellableBabelPlugin: PluginObj = {
         // Simplify: only accept arrow functions to handle .bind(this)
         // and ignore consideration of generator functions.
         if (!types.isArrowFunctionExpression(arg)) {
-          throw new SyntaxError(
-            `cancellable argument is not an arrow function expression`
-          );
+          // Don't throw exception:
+          // - Babel doesn't guarantee that nodes are only encountered at most once, so we could be revisiting a node we've already transformed.
+          // - The programmer may have wanted to directly provide a generator function.
+          return;
         }
         if (!arg.async) {
           throw new SyntaxError(
@@ -29,7 +30,7 @@ const cancellableBabelPlugin: PluginObj = {
         }
         if (arg.params.length) {
           throw new SyntaxError(
-            `cancellable argument is a function with parameters`
+            `cancellable argument is a function with parameters (${arg.params.length})`
           );
         }
         if (!types.isBlockStatement(arg.body)) {
