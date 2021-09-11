@@ -4,7 +4,7 @@ export const IS_CANCELLABLE = Symbol();
 
 export type Cancellable<T> = Promise<T> & {
   [IS_CANCELLABLE]: true;
-  cancel(): void;
+  cancel(withError?: Error): void;
 };
 
 const isAbortController = (val: unknown): val is AbortController => {
