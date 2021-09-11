@@ -24,7 +24,7 @@ export const cancellable = <T>(
   fn: () => Generator | Promise<T>
 ): Cancellable<T> => {
   const generator = fn as any as GeneratorFunction;
-  let cancelled = false;
+  let cancelledWithError: Error | undefined;
   const subtasks: (Promise<any> | Cancellable<any> | AbortController)[] = [];
   const promise: any = (async () => {
     const it = generator();
@@ -34,10 +34,10 @@ export const cancellable = <T>(
       | [true, any]
       | [false, any] = undefined;
     while (true) {
-      if (cancelled) {
+      if (cancelledWithError) {
         // Don't call it.throw as that would allow iterator to catch and continue.
         // Don't call it.return as it doesn't seem to do anything; it doesn't even run finally blocks in the generator function.
-        throw new CancelledError();
+        throw cancelledWithError;
       }
 
       // Allow this to throw.
@@ -66,8 +66,8 @@ export const cancellable = <T>(
     catch: (r) => promise.catch(r),
     finally: (n) => promise.finally(n),
     // This should not throw any exceptions, including CancelledError.
-    cancel: () => {
-      cancelled = true;
+    cancel: (withError: Error = new CancelledError()) => {
+      cancelledWithError = withError;
       for (const subtask of subtasks) {
         if (isAbortController(subtask)) {
           subtask.abort();
