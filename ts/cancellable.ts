@@ -67,6 +67,10 @@ export const cancellable = <T>(
     finally: (n) => promise.finally(n),
     // This should not throw any exceptions, including CancelledError.
     cancel: (withError: Error = new CancelledError()) => {
+      if (cancelledWithError !== undefined) {
+        // Already cancelled.
+        return;
+      }
       cancelledWithError = withError;
       for (const subtask of subtasks) {
         if (isAbortController(subtask)) {
