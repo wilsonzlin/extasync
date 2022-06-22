@@ -73,6 +73,7 @@ export const cancellable = <T>(
       }
       cancelledWithError = withError;
       for (const subtask of subtasks) {
+        // `subtask` could be anything; the cancellable execution function is allowed to `await` anything, as it might just be using cancellable for post-fulfilment cancellation checking.
         if (isAbortController(subtask)) {
           subtask.abort();
         } else if (isCancellable(subtask)) {
